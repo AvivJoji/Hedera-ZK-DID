@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Privacy-Preserving DID on Hedera</title>
+    <!-- Reveal.js CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/black.min.css">
+    <style>
+        .reveal h1,
+        .reveal h2,
+        .reveal h3 {
+            text-transform: none;
+        }
+
+        .reveal img {
+            max-height: 450px;
+            /* Reduced logic */
+            border: 1px solid #333;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin: 10px auto 40px auto;
+            /* Reduced top, increased bottom */
+            display: block;
+            padding: 15px;
+            background: #111;
+            transform: translateY(-30px);
+            /* Move Upwards */
+        }
+
+        .highlight {
+            color: #00e5ff;
+        }
+
+        .reveal section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- Slide 1: Title -->
+            <section>
+                <h2>Privacy-Preserving Decentralized Academic Credentials</h2>
+                <p>Built on <span class="highlight">Hedera Hashgraph</span> using <span
+                        class="highlight">ZK-SNARKs</span></p>
+                <img src="images/landing.png" alt="Landing Page">
+                <p><small>Presented by: Joji | Date: Jan 2026</small></p>
+            </section>
+
+            <!-- Slide 2: The Problem -->
+            <section>
+                <h3>The Crisis of Digital Identity</h3>
+                <ul>
+                    <li class="fragment">🚨 <strong>Fraud:</strong> Physical degrees are easily forged.</li>
+                    <li class="fragment">⏳ <strong>Inefficiency:</strong> Background checks take weeks.</li>
+                    <li class="fragment">🕵️ <strong>Privacy Loss:</strong> Standard Blockchain (Blockcerts) exposes
+                        <em>everything</em> on-chain.
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Slide 3: The Solution -->
+            <section>
+                <h3>Our Hybrid Solution</h3>
+                <div style="display: flex; justify-content: space-around;">
+                    <div style="width: 45%;">
+                        <h4>🛡️ Hedera Trust</h4>
+                        <p>Public Ledger for Immutability & Timestamping.</p>
+                    </div>
+                    <div style="width: 45%;">
+                        <h4>🔒 Zero Knowledge</h4>
+                        <p>Private Proofs for Authentic Verification without disclosure.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 4: System Architecture -->
+            <section>
+                <h3>System Architecture</h3>
+                <pre><code data-trim data-noescape>
+            [University] Issue Credential (Hash) -> [Hedera Ledger]
+                                                           |
+                                                           v
+            [Student] <-- (Secret + Hash) --------- [Access Valid]
+                |
+                v
+            [Browser] Generate ZK Proof (Groth16)
+                |
+                v
+            [Employer] Verify Proof + Check Ledger Status
+        </code></pre>
+            </section>
+
+            <!-- Slide 5: Live Demo - Issuance -->
+            <section>
+                <h3>Step 1: Issuer Dashboard</h3>
+                <p>University Admin issues a degree by anchoring the Hash on Hedera.</p>
+                <img src="images/issuer.png" alt="Issuer Dashboard">
+            </section>
+
+            <!-- Slide 6: Live Demo - Holder -->
+            <section>
+                <h3>Step 2: Holder Wallet</h3>
+                <p>Student views credentials & generates a <strong>Privacy-Preserving Proof</strong> locally.</p>
+                <img src="images/holder.png" alt="Holder Wallet">
+            </section>
+
+            <!-- Slide 7: Live Demo - Verifier -->
+            <section>
+                <h3>Step 3: Verifier Portal</h3>
+                <p>Employer validates the proof instantly.</p>
+                <img src="images/verifier.png" alt="Verifier Portal">
+            </section>
+
+            <!-- Slide 8: Performance -->
+            <section>
+                <h3>Performance Metrics</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Value</th>
+                            <th>Note</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Proof Gen</td>
+                            <td>~0.8s</td>
+                            <td>Client-side (WASM)</td>
+                        </tr>
+                        <tr>
+                            <td>Finality</td>
+                            <td>3.5s</td>
+                            <td>Hedera Consensus</td>
+                        </tr>
+                        <tr>
+                            <td>Cost</td>
+                            <td>$0.05</td>
+                            <td>Predictable Fees</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Slide 9: Conclusion -->
+            <section>
+                <h3>Conclusion</h3>
+                <ul>
+                    <li>✅ <strong>Scalable:</strong> Fast consensus via Hedera.</li>
+                    <li>✅ <strong>Private:</strong> Zero leaks via ZK-SNARKs.</li>
+                    <li>✅ <strong>Secure:</strong> Math-based verification.</li>
+                </ul>
+                <h4 style="margin-top: 20px;">Thank You!</h4>
+            </section>
+
+        </div>
+    </div>
+    <!-- Reveal.js Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            hash: true,
+            transition: 'convex' // none/fade/slide/convex/concave/zoom
+        });
+    </script>
+</body>
+
+</html>
